@@ -6,11 +6,11 @@ services:
     user: root
     entrypoint: ${CONFIG_PATH}/entrypoint.sh
     command:
-      - --path.rootfs=/${HOST_DIRNAME}
-      - --path.sysfs=/${HOST_DIRNAME}/sys
-      - --path.procfs=/${HOST_DIRNAME}/proc
+      - --path.rootfs=${HOST_PATH}
+      - --path.sysfs=${HOST_PATH}/sys
+      - --path.procfs=${HOST_PATH}/proc
       - --collector.textfile.directory=${CONFIG_PATH}
-      - --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|etc|${HOST_DIRNAME})($$|/)
+      - --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|etc)($$|/)
       - --no-collector.ipvs
     environment:
       CONFIG_PATH:
@@ -18,7 +18,7 @@ services:
     networks:
       metric-net:
     volumes:
-      - /:/${HOST_DIRNAME}:ro
+      - /:${HOST_PATH}:ro
       - /etc/hostname:${CONFIG_PATH}/nodename:ro
     configs:
       - source: entrypoint-config
