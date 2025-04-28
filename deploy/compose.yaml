@@ -10,7 +10,6 @@ services:
       - --path.procfs=${HOST_PATH}/proc
       - --collector.textfile.directory=${CONFIG_PATH}
       - --collector.filesystem.mount-points-exclude=^/(${MOUNT_POINTS_EXCLUDE})($$|/)
-      - --collector.diskstats.device-exclude=^(${DEVICE_EXCLUDE})$$
       - --no-collector.ipvs
       - --no-collector.hwmon
     environment:
