@@ -8,9 +8,9 @@ services:
       - --path.rootfs=${HOST_PATH}
       - --path.sysfs=${HOST_PATH}/sys
       - --path.procfs=${HOST_PATH}/proc
-      - --path.udev.data=${HOST_PATH}/root/run/udev/data
       - --collector.textfile.directory=${CONFIG_PATH}
       - --collector.filesystem.mount-points-exclude=^/(${MOUNT_POINTS_EXCLUDE})($$|/)
+      - --collector.diskstats.device-exclude=^(${DEVICE_EXCLUDE})$$
       - --no-collector.ipvs
       - --no-collector.hwmon
     environment:
